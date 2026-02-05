@@ -107,6 +107,14 @@ const renderTable = () => {
     tr.appendChild(createCell(row.clase, "clase"));
     tr.appendChild(createCell(row.principio, "principio"));
     tr.appendChild(createCell(row.ejemplos, "ejemplos"));
+    const actionCell = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "delete-row";
+    deleteButton.textContent = "Eliminar";
+    deleteButton.dataset.index = row.index;
+    actionCell.appendChild(deleteButton);
+    tr.appendChild(actionCell);
     tableBody.appendChild(tr);
   });
   filterCount.textContent = `Mostrando ${filteredRows.length} de ${rows.length}`;
@@ -206,7 +214,50 @@ tableBody.addEventListener("input", (event) => {
   }
 });
 
+tableBody.addEventListener("click", (event) => {
+  const button = event.target.closest(".delete-row");
+  if (!button) {
+    return;
+  }
+  const index = Number(button.dataset.index);
+  if (Number.isNaN(index)) {
+    return;
+  }
+  handleDeleteRow(index);
+});
+
 const handleFilters = () => {
+  renderTable();
+};
+
+const handleDeleteRow = async (index) => {
+  const row = rows[index];
+  if (!row) {
+    return;
+  }
+  const confirmed = window.confirm("¿Quieres eliminar esta fila?");
+  if (!confirmed) {
+    return;
+  }
+
+  setStatus("Eliminando...");
+  if (row.id) {
+    try {
+      const response = await fetch(`${apiUrl}?id=${row.id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Delete failed.");
+      }
+    } catch (error) {
+      setStatus("No se pudo eliminar la fila. Revisa tu función de Netlify.", true);
+      return;
+    }
+  }
+
+  rows.splice(index, 1);
+  setStatus(row.id ? "Fila eliminada correctamente." : "Fila eliminada localmente.");
+  renderClassFilter();
   renderTable();
 };
 

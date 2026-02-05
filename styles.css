@@ -204,6 +204,16 @@ main {
   vertical-align: top;
 }
 
+#drug-table th:last-child,
+#drug-table td:last-child {
+  width: 140px;
+  text-align: center;
+}
+
+#drug-table td:last-child {
+  background: #fff;
+}
+
 #drug-table th {
   background: #eef2ff;
   font-size: 0.95rem;
@@ -216,6 +226,20 @@ main {
 #drug-table td[contenteditable="true"]:focus {
   outline: 2px solid #6366f1;
   background: #eef2ff;
+}
+
+.delete-row {
+  border-radius: 12px;
+  padding: 8px 14px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.delete-row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(248, 113, 113, 0.2);
 }
 
 .site-footer {

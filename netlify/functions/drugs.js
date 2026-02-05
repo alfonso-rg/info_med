@@ -51,6 +51,24 @@ exports.handler = async (event) => {
       return jsonResponse(200, data);
     }
 
+    if (event.httpMethod === "DELETE") {
+      const payload = JSON.parse(event.body || "{}");
+      const id = payload.id || event.queryStringParameters?.id;
+      if (!id) {
+        return jsonResponse(400, { error: "Missing id." });
+      }
+      const { data, error } = await supabase
+        .from("drug_rows")
+        .delete()
+        .eq("id", id)
+        .select("id")
+        .single();
+      if (error) {
+        throw error;
+      }
+      return jsonResponse(200, data);
+    }
+
     return jsonResponse(405, { error: "Method not allowed." });
   } catch (error) {
     return jsonResponse(500, { error: "Server error." });
