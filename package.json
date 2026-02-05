@@ -1,0 +1,8 @@
+{
+  "name": "info-med",
+  "version": "1.0.0",
+  "description": "Static site with Netlify functions for drug table storage.",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.0"
+  }
+}
