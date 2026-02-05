@@ -1,0 +1,217 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: #f6f7fb;
+  color: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f6f7fb;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.site-header {
+  background: linear-gradient(120deg, #4f46e5, #7c3aed);
+  color: #fff;
+  padding: 48px 0 36px;
+}
+
+.site-header h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.site-header p {
+  margin: 0 0 24px;
+  max-width: 720px;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+}
+
+button.primary {
+  background: #fbbf24;
+  color: #1f2937;
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+main {
+  padding: 36px 0 56px;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.panel h2 {
+  margin-top: 0;
+}
+
+.help {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  color: #475569;
+}
+
+.secondary-link {
+  margin: -8px 0 20px;
+  color: #475569;
+}
+
+.secondary-link a {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.secondary-link a:hover {
+  text-decoration: underline;
+}
+
+.primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fbbf24;
+  color: #1f2937;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primary-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+}
+
+.source {
+  margin-top: 20px;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.source a {
+  color: #4f46e5;
+  word-break: break-all;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.filter-group input,
+.filter-group select {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.filter-count {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+  align-self: center;
+}
+
+.export-area {
+  overflow-x: auto;
+}
+
+#drug-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+#drug-table th,
+#drug-table td {
+  border: 1px solid #e2e8f0;
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+}
+
+#drug-table th {
+  background: #eef2ff;
+  font-size: 0.95rem;
+}
+
+#drug-table tbody tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+#drug-table td[contenteditable="true"]:focus {
+  outline: 2px solid #6366f1;
+  background: #eef2ff;
+}
+
+.site-footer {
+  padding: 24px 0 40px;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .panel {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
