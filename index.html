@@ -15,7 +15,8 @@
           PDF visual con un clic.
         </p>
         <div class="actions">
-          <button id="download-pdf" class="primary">Descargar PDF</button>
+          <button id="download-pdf" class="primary">Descargar PDF completo</button>
+          <button id="download-pdf-filtered" class="secondary">Descargar PDF con filtros</button>
           <button id="add-row" class="secondary">Añadir fila</button>
         </div>
       </div>
@@ -28,6 +29,21 @@
           Haz clic en cualquier celda para editar. Usa el botón “Añadir fila” para incluir nuevas
           entradas.
         </p>
+        <div class="filters">
+          <div class="filter-group">
+            <label for="filter-class">Filtrar por clase</label>
+            <select id="filter-class"></select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-search">Buscar en la tabla</label>
+            <input
+              id="filter-search"
+              type="search"
+              placeholder="Ej.: antibióticos, ibuprofeno, jarabe..."
+            />
+          </div>
+          <p id="filter-count" class="filter-count">Mostrando 0 de 0</p>
+        </div>
         <div id="export-area" class="export-area">
           <table id="drug-table">
             <thead>

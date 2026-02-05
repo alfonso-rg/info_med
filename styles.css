@@ -88,6 +88,42 @@ main {
   color: #475569;
 }
 
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.filter-group input,
+.filter-group select {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.filter-count {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+  align-self: center;
+}
+
 .export-area {
   overflow-x: auto;
 }
