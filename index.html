@@ -44,6 +44,22 @@
           </div>
           <p id="filter-count" class="filter-count">Mostrando 0 de 0</p>
         </div>
+        <form id="add-drug-form" class="add-form">
+          <div class="filter-group">
+            <label for="new-class">Clase de fármaco</label>
+            <input id="new-class" name="clase" type="text" required />
+          </div>
+          <div class="filter-group">
+            <label for="new-ingredient">Principio activo</label>
+            <input id="new-ingredient" name="principio" type="text" required />
+          </div>
+          <div class="filter-group">
+            <label for="new-examples">Ejemplos / notas</label>
+            <input id="new-examples" name="ejemplos" type="text" />
+          </div>
+          <button type="submit" class="primary">Guardar nueva fila</button>
+          <p id="form-status" class="form-status" role="status"></p>
+        </form>
         <div id="export-area" class="export-area">
           <table id="drug-table">
             <thead>

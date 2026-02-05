@@ -161,6 +161,24 @@ main {
   background: #fff;
 }
 
+.add-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: end;
+}
+
+.add-form button {
+  justify-self: start;
+}
+
+.form-status {
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
 .filter-count {
   margin: 0;
   font-size: 0.9rem;

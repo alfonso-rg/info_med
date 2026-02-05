@@ -1,4 +1,4 @@
-const rows = [
+const baseRows = [
   {
     clase: "Antitérmicos/antiinflamatorios",
     principio: "Paracetamol",
@@ -62,12 +62,17 @@ const rows = [
   },
 ];
 
+const rows = [...baseRows];
 const tableBody = document.querySelector("#drug-table tbody");
 const downloadButton = document.querySelector("#download-pdf");
 const downloadFilteredButton = document.querySelector("#download-pdf-filtered");
 const classFilter = document.querySelector("#filter-class");
 const searchFilter = document.querySelector("#filter-search");
 const filterCount = document.querySelector("#filter-count");
+const addForm = document.querySelector("#add-drug-form");
+const formStatus = document.querySelector("#form-status");
+
+const apiUrl = "/.netlify/functions/drugs";
 
 const createCell = (value, field) => {
   const cell = document.createElement("td");
@@ -205,6 +210,76 @@ const handleFilters = () => {
   renderTable();
 };
 
+const setStatus = (message, isError = false) => {
+  formStatus.textContent = message;
+  formStatus.style.color = isError ? "#dc2626" : "#475569";
+};
+
+const loadRowsFromDatabase = async () => {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error("No se pudieron cargar los datos.");
+    }
+    const data = await response.json();
+    data.forEach((row) => {
+      rows.push({
+        id: row.id,
+        clase: row.clase,
+        principio: row.principio,
+        ejemplos: row.ejemplos || "",
+      });
+    });
+    renderClassFilter();
+    renderTable();
+  } catch (error) {
+    setStatus(
+      "No se pudieron cargar las filas guardadas. Revisa la configuración de Supabase.",
+      true,
+    );
+  }
+};
+
+const handleFormSubmit = async (event) => {
+  event.preventDefault();
+  const formData = new FormData(addForm);
+  const payload = {
+    clase: formData.get("clase")?.trim(),
+    principio: formData.get("principio")?.trim(),
+    ejemplos: formData.get("ejemplos")?.trim() || "",
+  };
+
+  if (!payload.clase || !payload.principio) {
+    setStatus("Completa la clase y el principio activo.", true);
+    return;
+  }
+
+  setStatus("Guardando...");
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      throw new Error("Error al guardar.");
+    }
+    const saved = await response.json();
+    rows.push({
+      id: saved.id,
+      clase: saved.clase,
+      principio: saved.principio,
+      ejemplos: saved.ejemplos || "",
+    });
+    addForm.reset();
+    setStatus("Fila guardada correctamente.");
+    renderClassFilter();
+    renderTable();
+  } catch (error) {
+    setStatus("No se pudo guardar la fila. Revisa tu función de Netlify.", true);
+  }
+};
+
 renderClassFilter();
 renderTable();
 downloadButton.addEventListener("click", () =>
@@ -215,3 +290,6 @@ downloadFilteredButton.addEventListener("click", () =>
 );
 classFilter.addEventListener("change", handleFilters);
 searchFilter.addEventListener("input", handleFilters);
+addForm.addEventListener("submit", handleFormSubmit);
+
+loadRowsFromDatabase();
