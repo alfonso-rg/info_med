@@ -88,6 +88,50 @@ main {
   color: #475569;
 }
 
+.secondary-link {
+  margin: -8px 0 20px;
+  color: #475569;
+}
+
+.secondary-link a {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.secondary-link a:hover {
+  text-decoration: underline;
+}
+
+.primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fbbf24;
+  color: #1f2937;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primary-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+}
+
+.source {
+  margin-top: 20px;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.source a {
+  color: #4f46e5;
+  word-break: break-all;
+}
+
 .filters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
