@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fármacos para niños diabéticos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Fármacos para niños diabéticos</h1>
+        <p>
+          Organiza los fármacos por clase y principio activo, edita la tabla y descarga un
+          PDF visual con un clic.
+        </p>
+        <div class="actions">
+          <button id="download-pdf" class="primary">Descargar PDF completo</button>
+          <button id="download-pdf-filtered" class="secondary">Descargar PDF con filtros</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <h2>Tabla editable</h2>
+        <p class="help">Haz clic en cualquier celda para editar.</p>
+        <p class="secondary-link">
+          Consulta una tabla ampliada con más fármacos y su fuente en
+          <a href="tabla_farmacos_ampliada.html">esta página de referencia</a>.
+        </p>
+        <div class="filters">
+          <div class="filter-group">
+            <label for="filter-class">Filtrar por clase</label>
+            <select id="filter-class"></select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-search">Buscar en la tabla</label>
+            <input
+              id="filter-search"
+              type="search"
+              placeholder="Ej.: antibióticos, ibuprofeno, jarabe..."
+            />
+          </div>
+          <p id="filter-count" class="filter-count">Mostrando 0 de 0</p>
+        </div>
+        <div id="export-area" class="export-area">
+          <table id="drug-table">
+            <thead>
+              <tr>
+                <th>Clase de fármaco</th>
+                <th>Principio activo</th>
+                <th>Ejemplos del documento</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Lista basada en el documento proporcionado. Puedes ampliarla según tus necesidades.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
