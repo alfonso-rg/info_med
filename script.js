@@ -63,7 +63,6 @@ const rows = [
 ];
 
 const tableBody = document.querySelector("#drug-table tbody");
-const addRowButton = document.querySelector("#add-row");
 const downloadButton = document.querySelector("#download-pdf");
 const downloadFilteredButton = document.querySelector("#download-pdf-filtered");
 const classFilter = document.querySelector("#filter-class");
@@ -123,16 +122,6 @@ const renderClassFilter = () => {
     classFilter.appendChild(option);
   });
   classFilter.value = classes.includes(currentValue) ? currentValue : "all";
-};
-
-const addEmptyRow = () => {
-  rows.push({
-    clase: "Nueva clase",
-    principio: "Nuevo principio activo",
-    ejemplos: "Añade ejemplos o notas",
-  });
-  renderClassFilter();
-  renderTable();
 };
 
 const createExportArea = (rowsToExport) => {
@@ -218,7 +207,6 @@ const handleFilters = () => {
 
 renderClassFilter();
 renderTable();
-addRowButton.addEventListener("click", addEmptyRow);
 downloadButton.addEventListener("click", () =>
   downloadPdf(rows, "farmacos-ninos-diabeticos.pdf"),
 );
